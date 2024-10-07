@@ -2,7 +2,15 @@ version: '3'
 services:
   iobroker:
     container_name: iobroker
+    hostname: iobroker
     image: buanet/iobroker:latest
     restart: always
+    privileged: true
     ports:
-      - "127.0.0.1:8081:8081"
+      - "192.168.1.13:8081:8081"
+      - "192.168.1.13:8088:8088"
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
+    volumes:
+      - ./iobrokerdata:/opt/iobroker
+
